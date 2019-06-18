@@ -36,10 +36,15 @@ plt = plot3d(1, xlim=(-5, 5), ylim=(-5, 5), zlim=(-1 , 1),
 
 plotMaster = plot(plt, plt2)
 
+@gif for i=1.:500.
+    cNext!(myFuncion)
+    push!(plt, myFuncion.x, myFuncion.y, myFuncion.z)
+end every 1
+
 @gif for i=1.:10.
     myCirculo = Circuloo((h = 0., k = 0., r = i)...)
-    for θ ∈ LinRange(0, 2π, 500)
+    for θ in LinRange(0, 2π, 500)
         step!(myCirculo, θ)
         push!(plt2, myCirculo.h, myCirculo.k)
     end
-end every 1
+end every 5
